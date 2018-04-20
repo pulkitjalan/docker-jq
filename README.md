@@ -3,5 +3,5 @@
 ## Usage
 
 ```sh
-docker run --rm --name jq pulkitjalan/jq
+echo "{\"foo\":\"bar\"}" | docker run --rm --name jq -a stdin -a stdout -i pulkitjalan/jq "."
 ```
