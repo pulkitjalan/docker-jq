@@ -1,10 +1,5 @@
-FROM busybox as builder
+FROM alpine:3
 
-RUN wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 \
-    && chmod +x jq-linux64
+RUN apk add --no-cache jq
 
-FROM scratch
-
-COPY --from=builder /jq-linux64 /jq
-
-ENTRYPOINT ["/jq"]
+ENTRYPOINT ["jq"]
