@@ -1,4 +1,4 @@
-# JQ Alpine Docker
+# jq
 
 ## Usage
 
