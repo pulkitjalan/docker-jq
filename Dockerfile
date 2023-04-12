@@ -1,7 +1,10 @@
-FROM alpine:3.10
+FROM busybox as builder
 
-MAINTAINER Pulkit Jalan "<pulkit1990@gmail.com>"
+RUN wget https://github.com/stedolan/jq/releases/latest/download/jq-linux64 \
+    && chmod +x jq-linux64
 
-RUN apk add --no-cache jq
+FROM scratch
 
-ENTRYPOINT ["jq"]
+COPY --from=builder /jq-linux64 /jq
+
+ENTRYPOINT ["/jq"]
