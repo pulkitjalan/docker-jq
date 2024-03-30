@@ -1,10 +1,8 @@
-name: deploy
+name: test
 
 on:
-  push:
+  pull_request:
     branches: [ main ]
-  schedule:
-    - cron: '0 3 * * 0'
 
 jobs:
   build:
@@ -40,17 +38,14 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            pulkitjalan/jq
-            ghcr.io/pulkitjalan/jq
+            ghcr.io/${{ github.repository }}
           tags: |
-            type=raw,value=latest
+            type=raw,value=test
 
-      - name: Build and push
+      - name: Build
         uses: docker/build-push-action@v5
         with:
           file: Dockerfile
-          push: true
-          provenance: false
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
