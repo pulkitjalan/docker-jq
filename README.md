@@ -1,3 +1,7 @@
+### Archived
+
+Please use the [official container](https://github.com/jqlang/jq/pkgs/container/jq)
+
 # jq
 
 ## Usage
